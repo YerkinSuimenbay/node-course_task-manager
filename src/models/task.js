@@ -1,6 +1,6 @@
-const { model } = require('mongoose')
+const { model, Schema } = require('mongoose')
 
-const Task = model('Task', {
+const taskSchema = new Schema({
     description: {
         type: String,
         required: true,
@@ -12,5 +12,16 @@ const Task = model('Task', {
         default: false
     }
 })
+
+// taskSchema.pre('save', async function(next) {
+//     const task = this
+//     if (task.isModified('someProperty')) {
+//         // do smth
+//     }
+
+//     next()
+// })
+
+const Task = model('Task', taskSchema)
 
 module.exports = Task

@@ -3,12 +3,15 @@ require('./db/mongoose')
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
 
-
+const PORT = process.env.PORT || 4040
 const app = express()
 
 app.use(express.json())
 
-const PORT = process.env.PORT || 4040
+// app.use((req, res, next) => {  // ORDER OF APP.USE() IS IMPORTANT
+//     res.status(503).send({ message: 'Task.js Maintenance'})
+// })
+
 
 app.use(userRouter)
 app.use(taskRouter)
